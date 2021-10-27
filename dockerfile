@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /os-appid
+WORKDIR /appid-openshift
 
 COPY package.json ./
 
