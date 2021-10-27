@@ -145,7 +145,45 @@ git push -u origin main --allow-unrelated-histories
 
 **Now you're good to go!**
 
-[**<HOW_TO_DOCKERFILE>**](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) ([see sample app's Dockerfile](https://github.com/jritten/UF_Hacks_Starter_Kit/blob/main/Starter_Kit_1/ibm-react-app/Dockerfile))
+
+## [Build a Container Image and Push to Docker Hub]()
+
+[**<HOW_TO_DOCKERFILE>**](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) ([see sample app's Dockerfile](https://github.com/jritten/appid-openshift/blob/main/Dockerfile))
+
+### Run the App Locally w Docker Desktop
+
+Build a container image w Docker.
+```
+docker build . --tag appid-openshift
+```
+
+Run the image w Docker Desktop.
+```
+docker run appid-openshift
+```
+
+View the app.
+```
+docker run appid-openshift
+```
+
+
+### Push the Container Image to Docker Hub
+
+ Tag the docker image.
+```
+docker tag appid-openshift <DOCKERHUB_REPO>/appid-openshift:latest
+```
+
+Push the image to Docker Hub.
+```
+docker push <DOCKERHUB_REPO>/appid-openshift:latest
+```
+
+Copy the image location from the output.
+```
+The push refers to repository [docker.io/<DOCKERHUB_REPO>/appid-openshift]
+```
 
 
 ## [Deploy a React App to Red Hat OpenShift](https://ibm.biz/appid-openshift-slides)
