@@ -1,9 +1,23 @@
-# Add OAuth to an OpenShift React App w IBM App ID
+# [[HACKTOBERFEST] Add Google/Facebook OAuth to a React App & Deploy to OpenShift](https://www.crowdcast.io/e/appid-openshift)
 
-Create an IBM Cloud Pay-As-You-Go Account
+### Create an [**IBM Cloud Account**](https://ibm.biz/appid-openshift).
+
+You will only be using the Free Lite Tier services.
+
+#### 1. [Add Facebook/Google OAuth to a React App w IBM App ID](./README.md#add-facebookgoogle-oauth-to-a-react-app-w-ibm-app-id)
+
+#### 2. [Push Your Code to GitHub](./README.md#push-your-code-to-github)
+
+#### 3. [Build a Container Image and Push to Docker Hub](./README.md#build-a-container-image-and-push-to-docker-hub)
+
+#### 4. [Deploy a React App to Red Hat OpenShift](./README.md#deploy-a-react-app-to-red-hat-openshift)
+
+#### 5. [Login to the App w App ID OAuth](./README.md#login-to-the-app-w-app-id-oauth)
 
 
-## Create an Instance of App ID
+## [Add Facebook/Google OAuth to a React App w IBM App ID](https://docs.google.com/presentation/d/1L9JfBOWnQzKl9bYDkZ6lWRrij530Vg3pVBL2BZ-Gwgs/edit?usp=sharing)
+
+### Create an Instance of App ID
 
 Create an App ID Instance; Choose the Lite Tier Plan
 
@@ -16,33 +30,68 @@ Add a **Name**, and select **Single-page application** from the **Type** dropdow
 Expand and view the app credentials. Note the **cliendID** and the **discoveryEndpoint**. We'll need these later.
 
 
-## Create a React App
+### [Create a React App](https://reactjs.org/docs/create-a-new-react-app.html)
 
-Create a React app or use the [sample app](https://github.com/IBM-Developer-Austin/appid-sample-code-snippets).
+Create a React app below, clone this repo, or use the [sample app](https://github.com/IBM-Developer-Austin/appid-sample-code-snippets).
 
 **Note:** If it's been a while since you've used the `create-react-app` command, it has been depricated. You will need to uninstall and re-rerun the command.
 
 Uninstall `create-react-app` command globally from both npm and yarn:
+
 uninstall from npm
-`npm uninstall -g create-react-app`
+```
+npm uninstall -g create-react-app
+```
 uninstall from yarn
-`yarn global remove create-react-app`
+```
+yarn global remove create-react-app
+```
 
 Re-run the `create-react-app` command to setup a frontend build pipeline; give your app a name:
-`npx create-react-app <APP_NAME>`
-`npx create-react-app ce-app-id `
+```
+npx create-react-app <APP_NAME>
+```
+```
+npx create-react-app ibm-react-app
+```
 
 Move into your project directory:
-`cd  <APP_NAME>`
-`cd ce-app-id`
+```
+cd  <APP_NAME>
+```
+```
+cd ibm-react-app
+```
+
+[See Documentation](https://reactjs.org/docs/create-a-new-react-app.html)
 
 
-## Add App ID to the App
+### [Add **react-dotenv** to the App](https://www.npmjs.com/package/react-dotenv)
+
+Load environment variables dynamically for your React applications created with CRA (Create-React-App).
+
+Install the react-dotenv package:
+```
+npm install react-dotenv
+```
+
+Open your project's package.json file and: (already updated in the package.json)
+- Add an .env file to your project root (or just load from the system environment variables).
+- Add the react-dotenv NPM command to your start, build (and your serve commands).
+- Add the react-dotenv.whitelist property to package.json to specify which variables you need exposed.
+
+[See Documentation](https://www.npmjs.com/package/react-dotenv)
+
+
+### Add App ID to the App & [Add App ID Credentials to **.env**](https://create-react-app.dev/docs/adding-custom-environment-variables/)
 
 Install the IBM Cloud App ID SDK:
-`npm install ibmcloud-appid-js`
+```
+npm install ibmcloud-appid-js
+```
 
-In the `/src` folder of the app, open `App.js` in your text editor.
+In the `/src` folder of the app, open `App.js` in your text editor. ([see sample app's App.js](https://github.com/jritten/UF_Hacks_Starter_Kit/blob/main/Starter_Kit_1/ibm-react-app/src/App.js))
+
 Import App ID by adding the following code:
 ```
 import AppID from `ibmcloud-appid-js`;
@@ -58,158 +107,169 @@ After successfull authentication, the `welcomeDisplayState` will be set to true,
 Add a welcome `<div>`, a login `<button>` that calls the login function(), and an error `<div>`.
 
 Start the application, and run it locally:
-`npm start`
+```
+npm start
+```
 
 Update the **redirect_uri** in the App ID dashboard in the **Authentication Settings** under the **Manage Authentication** tab on the left.
 
+**DO NOT SKIP: Add web direct URLs**
+```
+http://localhost:3000
+```
 
-## View the Live Application
+[See Documentation](https://create-react-app.dev/docs/adding-custom-environment-variables/)
+
+
+### View the Live Application
 
 View your locally deployed application!
-`http://localhost:3000` or `http://localhost:3000`
+```
+http://localhost:3000
+```
 
 
 ## Push Your Code to GitHub
 
 Create a new GitHub repository; add a **Repository name**, and click **Create repository**.
 
-**Note:** Do NOT initialize the repo with anything other than a name.
+**Note:** Initialize the repo with a name and an MIT license.
 
-Add the remote origin to the local initialized project and set it upstream.
+Clone the Starter-Kit repo, copy the ibm-react-app into a new directory, add the remote origin to the local initialized project, and set it upstream.
 Push your code from the CLI to the new repository.
 ```
 git remote add origin https://github.com/<PROFILE_NAME>/<REPO_NAME>.git
 git branch -M main
-git push -u origin main
+git push -u origin main --allow-unrelated-histories
 ```
 
-Now you're good to go!
+**Now you're good to go!**
 
-**<ADD_HOW_TO_DOCKERFILE_HERE>**
+[**<HOW_TO_DOCKERFILE>**](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) ([see sample app's Dockerfile](https://github.com/jritten/UF_Hacks_Starter_Kit/blob/main/Starter_Kit_1/ibm-react-app/Dockerfile))
 
-<!-- FOR CLOUD NATIVE BUILDPACKS -->
-## Build a Container Image with Docker Hub with the Code Engine CLI
 
-Set up registry access to your Docker Hub account.
+## [Deploy a React App to Red Hat OpenShift](https://ibm.biz/appid-openshift-slides)
+
+### Login to Your IBM Cloud Account w the IBM Cloud CLI
+
+Login to your IBM Cloud account.
 ```
-ibmcloud ce registry create --name dockerhub --server https://index.docker.io/v1/ --username <DOCKER_USERNAME> --password <DOCKER_PASSWORD>
-```
-
-Create a build with buildpacks.
-```
-ibmcloud ce build create --name <NAME>-build --source https://github.com/<PROFILE_NAME>/<REPO_NAME> --commit main --context-dir /<DIR_NAME> --registry-secret dockerhub --image docker.io/<DOCKER_ID>/<IMAGE_NAME> --size small --strategy buildpacks
+ibmcloud login
 ```
 
-**Note:** `--context-dir /<DIR_NAME>` is optional; this is only required if the source code for your application lives within a context directory folder in your repository.
-
-Submit a build run.
+View available resource groups.
 ```
-ibmcloud ce buildrun submit --build <NAME>-build
+ibmcloud resource groups
 ```
 
-Check the status of the build run.
+Assign a target resource group.
 ```
-ibmcloud ce buildrun get --name <NAME>-build-run-851026-090000000
+ibmcloud target -g Default
 ```
 
-If there's a problem with the build run, display the logs.
-```ibmcloud ce buildrun logs --buildrun <NAME>-build-run-851026-090000000
+Update the Region to **eu-gb**.
+```
+ibmcloud target -r eu-gb
 ```
 
 
-## Build a Container Image with IBM Container Registry with the Code Engine CLI
+### Create a Code Engine Project
 
-
-## Deploy the App to OpenShift Cluster
-
-Deploy the image to OpenShift.
+Create a new Code Engine project and give it a name.
 ```
-<ADD_CMD_HERE>
+ibmcloud ce project create --name <NAME>
+```
+```
+ibmcloud ce project create --name ufhacks
+```
+
+Verify you're in the newly created project.
+```
+ibmcloud ce project current
+```
+
+OPTIONAL: View your list of CE projects.
+```
+ibmcloud ce project list
+```
+
+OPTIONAL: Select the CE project you want to use.
+```
+ibmcloud ce project --name <NAME>
+```
+```
+ibmcloud ce project --name ufhacks
 ```
 
 
-## Update the Port to 3001
+### Create a Code Engine Application
+
+Create a new Code Engine application and give it a name.
+```
+WE WILL DO THIS FROM THE UI
+```
 
 
-## View the Deployed Application
+### Deploy the App to OpenShift from a Container Image
+
+Deploy the app to CE from a container image. (by default, CE uses Dockerhub registries for repos containtining a Dockerfile unless specified otherwise)
+```
+ibmcloud ce application create --name ibm-react-app --image ibmcom/ibm-react-app
+```
+
+Get the app URL.
+```
+ibmcloud ce application get -n ibm-react-app -output url
+```
 
 
-##Login to the App w App ID OAuth!
+### DO NOT SKIP: Add the `<OUTPUT_URL>` to package.json
+
+Update the package.json react-dotenv.whitelist property URL to the Code Engine app URL.
+```
+    "react-dotenv": {
+    "whitelist": ["<OUTPUT_URL>"]
+  }
+```
+
+
+### DO NOT SKIP: Add the `<OUTPUT_URL>` to App ID Redirect URIs
+
+Update the **redirect_uri** in the App ID dashboard in the **Authentication Settings** under the **Manage Authentication** tab on the left.
+
+**Add web direct URL**
+```
+<OUTPUT_URL>
+```
+
+
+### View the Deployed Application
+
+View your serverless app deployed to Code Engine!
+```
+<OUTPUT_URL>
+```
+
+
+## Login to the App w App ID OAuth!
+
+Login to your app with Facebook OAuth, Google OAuth, and IBM Cloud Directory!
+```
+<TEST_IT_OUT!>
+```
 
 
 
 
+<!-- OPTIONAL: INJECT ENVIRONMENT VARIABLES TO THE APP W OPENSHIFT -->
+## [Add App ID Credentials to OpenShift via the CLI or Dashboard](https://cloud.ibm.com/docs/codeengine?topic=codeengine-configmap-secret)
+
+Create a new CE secret reference.
+```
+ibmcloud ce app update --name ibm-react-app --env-from-secret secrets
+```
 
 
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start` or `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## [Connect w Me!](https://linktr.ee/jritten)
 
