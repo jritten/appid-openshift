@@ -2,11 +2,14 @@
 
 ### Prerequisites
 * [Node Version Manager(NVM)](https://github.com/nvm-sh/nvm)
+
 Install NVM with cURL command:
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ```
+
 * [Node v14.18.1](https://nodejs.org/en/about/releases/)
+
 Install node v14.18.1:
 ```
 nvm install v14.18.1
@@ -107,6 +110,9 @@ touch appid-openshift.env
 ```
 - Add the react-dotenv NPM command to your start, build (and your serve commands).
 - Add the react-dotenv.whitelist property to package.json to specify which variables you need exposed.
+- Add REACT_APP_CLIENT_ID=<ADD_APP_ID_CLIENT_ID> to the .env files (we'll add the values from App ID later).
+- REACT_APP_DISCOVERY_ENDPOINT=<ADD_APP_ID_DISCOVERY_ENDPOINT> to the .env files (we'll add the values from App ID later).
+- Add PORT=8080 to the .env files to expose the application to the port to run on OpenShift.
 
 [See Documentation](https://www.npmjs.com/package/react-dotenv)
 
@@ -143,7 +149,7 @@ Update the **redirect_uri** in the App ID dashboard in the **Authentication Sett
 
 **DO NOT SKIP: Add web direct URLs**
 ```
-http://localhost:3000
+http://localhost:8080
 ```
 
 [See Documentation](https://create-react-app.dev/docs/adding-custom-environment-variables/)
@@ -153,7 +159,7 @@ http://localhost:3000
 
 View your locally deployed application!
 ```
-http://localhost:3000
+http://localhost:8080
 ```
 
 
