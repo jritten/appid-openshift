@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:lts
 
 # set working directory
 WORKDIR /appid-openshift
