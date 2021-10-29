@@ -188,6 +188,11 @@ git push origin main
 
 ### Run the App Locally w Docker Desktop
 
+Installing new caniuse-lite version and clean package.json dependencies from caniuse-lite.
+```
+npx browserslist@latest --update-db
+```
+
 Build a container image w Docker.
 ```
 docker build . --tag appid-openshift
