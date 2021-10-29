@@ -43,7 +43,8 @@
   "react-dotenv": {
     "whitelist": [
       "http://localhost:8080",
-      "http://localhost:8080"
+      "http://localhost:8080",
+      "http://appid-openshift-test-git-test.mycluster-hacktoberfest-162e406f043e20da9b0ef0731954a894-0000.us-south.containers.appdomain.cloud"
     ]
   }
 }
