@@ -52,7 +52,7 @@ Re-run the `create-react-app` command to setup a frontend build pipeline; give y
 npx create-react-app <APP_NAME>
 ```
 ```
-npx create-react-app ibm-react-app
+npx create-react-app appid-openshift
 ```
 
 Move into your project directory:
@@ -60,7 +60,7 @@ Move into your project directory:
 cd  <APP_NAME>
 ```
 ```
-cd ibm-react-app
+cd appid-openshift
 ```
 
 [See Documentation](https://reactjs.org/docs/create-a-new-react-app.html)
@@ -77,6 +77,13 @@ npm install react-dotenv
 
 Open your project's package.json file and: (already updated in the package.json)
 - Add an .env file to your project root (or just load from the system environment variables).
+```
+touch .env
+```
+- Add an appid-openshift.env file to your project root (or just load from the system environment variables).
+```
+touch appid-openshift.env
+```
 - Add the react-dotenv NPM command to your start, build (and your serve commands).
 - Add the react-dotenv.whitelist property to package.json to specify which variables you need exposed.
 
@@ -162,7 +169,22 @@ git push origin main
 
 ## [Build a Container Image and Push to Docker Hub]()
 
+### Add a Dockerfile to the App
+
+Add a Dockerfile to the app from the example in the repo. See below.
+
+```
+touch Dockerfile
+```
+
 [**<HOW_TO_DOCKERFILE>**](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) ([see sample app's Dockerfile](https://github.com/jritten/appid-openshift/blob/main/Dockerfile))
+
+Commit your changes, and push your code from the CLI to the repo.
+```
+git add Dockerfile
+git commit -m "Add Dockerfile to the app repo."
+git push origin main
+```
 
 ### Run the App Locally w Docker Desktop
 
