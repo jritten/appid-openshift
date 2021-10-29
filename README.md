@@ -1,5 +1,26 @@
 # [[HACKTOBERFEST] Add Google/Facebook OAuth to a React App & Deploy to OpenShift](https://www.crowdcast.io/e/appid-openshift)
 
+### Prerequisites
+* [Node Version Manager(NVM)](https://github.com/nvm-sh/nvm)
+Install NVM with cURL command:
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+* [Node v14.18.1](https://nodejs.org/en/about/releases/)
+Install node v14.18.1:
+```
+nvm install v14.18.1
+```
+Set default node version to v14.18.1:
+```
+nvm alias default v14.18.1
+```
+Use node v14.18.1:
+```
+nvm use default
+```
+
+
 ### Create an [**IBM Cloud Account**](https://ibm.biz/appid-openshift).
 
 You will only be using the Free Lite Tier services.
