@@ -131,6 +131,19 @@ http://localhost:3000
 
 ## Push Your Code to GitHub
 
+Commit your changes to the local project directory.
+
+```
+git add .env
+git commit -m "Add .env file for environment variables."
+git add appid-openshift.env
+git commit -m "Add appid-openshift.env file for openshift environment variables."
+git add App.js
+git commit -m "Update React app w App ID instance login."
+git add .
+git commit -m "Update React app w react-dotenv and ibmcloud-appid-js."
+```
+
 Create a new GitHub repository; add a **Repository name**, and click **Create repository**.
 
 **Note:** Initialize the repo with a name and an MIT license.
@@ -140,7 +153,8 @@ Push your code from the CLI to the new repository.
 ```
 git remote add origin https://github.com/<PROFILE_NAME>/<REPO_NAME>.git
 git branch -M main
-git push -u origin main --allow-unrelated-histories
+git pull -u origin main --allow-unrelated-histories
+git push origin main
 ```
 
 **Now you're good to go!**
