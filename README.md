@@ -1,6 +1,8 @@
 # [[HACKTOBERFEST] Add Google/Facebook OAuth to a React App & Deploy to OpenShift](https://www.crowdcast.io/e/appid-openshift)
 
 ### Prerequisites
+* Use [THIS](https://github.com/jritten/test-app) sample app: https://github.com/jritten/test-app
+
 * [Node Version Manager(NVM)](https://github.com/nvm-sh/nvm)
 
 Install NVM with cURL command:
